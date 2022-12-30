@@ -1,18 +1,20 @@
 #include <stdio.h>
-//³õÊ¼»¯¶ÓÁÐ
+//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void initializeList(int list[],int number){
     for (int i = 0; i < number; i ++) {
         list[i] = -1;
     }
 }
-//Õ¹Ê¾¶ÓÁÐ×´Ì¬
+//Õ¹Ê¾ï¿½ï¿½ï¿½ï¿½×´Ì¬
 void showList(int list[], int number){
     for (int i = 0; i < number; i ++) {
         printf("%2d",list[i]);
     }
     printf("\n");
+
+    
 }
-//Õ¹Ê¾µ±Ç°ÄÚ´æ×´Ì¬
+//Õ¹Ê¾ï¿½ï¿½Ç°ï¿½Ú´ï¿½×´Ì¬
 void showMemoryList(int list[],int phyBlockNum){
     for (int i = 0; i < phyBlockNum; i ++) {
         if (list[i] == -1) {
@@ -23,11 +25,11 @@ void showMemoryList(int list[],int phyBlockNum){
     printf("\n");
 }
 void informationCount(int missingCount,int replaceCount,int pageNum){
-    printf("È±Ò³´ÎÊý:%d   È±Ò³ÂÊ:%d/%d\n",missingCount,missingCount,pageNum);
+    printf("È±Ò³ï¿½ï¿½ï¿½ï¿½:%d   È±Ò³ï¿½ï¿½:%d/%d\n",missingCount,missingCount,pageNum);
     double result = (double)(pageNum - missingCount)/(double)pageNum;
-    printf("ÖÃ»»´ÎÊý:%d  ÃüÖÐÂÊ:%.2f\n",replaceCount,result);
+    printf("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½:%d  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:%.2f\n",replaceCount,result);
 }
-//ÕÒµ½¸ÃÒ³ÃæÏÂ´ÎÒª·ÃÎÊµÄÎ»ÖÃ
+//ï¿½Òµï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Â´ï¿½Òªï¿½ï¿½ï¿½Êµï¿½Î»ï¿½ï¿½
 int getNextPosition(int currentPage,int currentPosition,int strList[],int pageNum){
     
     for (int i = currentPosition+1; i < pageNum; i ++) {
@@ -37,18 +39,18 @@ int getNextPosition(int currentPage,int currentPosition,int strList[],int pageNu
     }
     return 100;
 }
-//×î¼ÑÖÃ»»Ëã·¨
+//ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ã·¨
 void replacePageByOPT(int memoryList[],int phyNum,int strList[],int pageNum){   
-    int replaceCount = 0;//ÖÃ»»´ÎÊý
-    int missingCount = 0; //È±Ò³´ÎÊý
-    int nextPosition[phyNum];//¼ÇÂ¼ÔÚÄÚ´æµÄÎïÀí¿éµÄÏÂÒ»´Î·ÃÎÊÎ»ÖÃ
+    int replaceCount = 0;//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
+    int missingCount = 0; //È±Ò³ï¿½ï¿½ï¿½ï¿½
+    int nextPosition[phyNum];//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î·ï¿½ï¿½ï¿½Î»ï¿½ï¿½
     initializeList(nextPosition, phyNum);
     int isVisited;
     for (int i = 0; i < pageNum; i ++) {
         isVisited = 0;
-        //ÅÐ¶ÏÊÇ·ñÐèÒªÖÃ»»->ÄÚ´æÒÑÂúÇÒÐèÒª·ÃÎÊµÄÒ³Ãæ²»ÔÚÄÚ´æÖÐ
+        //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Òªï¿½Ã»ï¿½->ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Êµï¿½Ò³ï¿½æ²»ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½
         for (int j = 0; j < phyNum; j ++) {
-            if (memoryList[j] == strList[i]) {//¸ÃÒ³ÃæÒÑ¾­´æÔÚÄÚ´æÖÐ
+            if (memoryList[j] == strList[i]) {//ï¿½ï¿½Ò³ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½
                 nextPosition[j] = getNextPosition(memoryList[j], i, strList, pageNum);
                 isVisited = 1;
                 printf("%d\n",strList[i]);
@@ -64,14 +66,14 @@ void replacePageByOPT(int memoryList[],int phyNum,int strList[],int pageNum){
                 break;
             }
         }
-        if (!isVisited) { //µ±Ç°Ò³Ãæ»¹Ã»·ÃÎÊ¹ý£¬ ÄÚ´æÒÑÂúÇÒµ±Ç°·ÃÎÊ²»ÔÚÄÚ´æÖÐ->½øÐÐÖÃ»»
+        if (!isVisited) { //ï¿½ï¿½Ç°Ò³ï¿½æ»¹Ã»ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½Ç°ï¿½ï¿½ï¿½Ê²ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½->ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
             int max = 0;
-            for (int k = 1; k < phyNum; k ++) {//1.Ñ°ÕÒµ½×îÍí²Å±»·ÃÎÊµ½µÄÒ³Ãæ
+            for (int k = 1; k < phyNum; k ++) {//1.Ñ°ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ò³ï¿½ï¿½
                 if (nextPosition[max] < nextPosition[k]) {
                     max = k;
                 }
             }
-            memoryList[max] = strList[i];//2.½«¸ÃÎ»ÖÃµÄÒ³Ãæ»»³ö
+            memoryList[max] = strList[i];//2.ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ãµï¿½Ò³ï¿½æ»»ï¿½ï¿½
             nextPosition[max] = getNextPosition(memoryList[max], i, strList, pageNum);
             missingCount ++;
             replaceCount ++;
@@ -83,22 +85,22 @@ void replacePageByOPT(int memoryList[],int phyNum,int strList[],int pageNum){
 }
 int main(int argc, const char * argv[]) {
     int phyBlockNum;
-    printf("ÇëÊäÈëÎïÀí¿éÊýÁ¿:\n");
+    printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:\n");
     scanf("%d",&phyBlockNum);
     int memoryList[phyBlockNum];
     initializeList(memoryList, phyBlockNum);
     int pageNum;
-    printf("ÇëÊäÈëÒª·ÃÎÊµÄÒ³Ãæ×ÜÊý:\n");
+    printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Êµï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:\n");
     scanf("%d",&pageNum);
     int pageNumStrList[pageNum];
-    printf("ÇëÊäÈëÒª·ÃÎÊµÄÒ³ÃæºÅ:\n");
+    printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Êµï¿½Ò³ï¿½ï¿½ï¿½:\n");
     for (int i = 0; i < pageNum; i ++) {
         scanf("%d",&pageNumStrList[i]);
     }
     showList(pageNumStrList, pageNum);
     int chose;
-    printf("ÇëÑ¡ÔñËùÐèµÄÖÃ»»Ëã·¨:\n");
-    printf("1.OPT 0.ÍË³ö\n");
+    printf("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ã·¨:\n");
+    printf("1.OPT 0.ï¿½Ë³ï¿½\n");
     scanf("%d",&chose);
     switch (chose) {
         case 1:
@@ -107,7 +109,7 @@ int main(int argc, const char * argv[]) {
         	initializeList(memoryList, phyBlockNum);
             break;
 		case 0:
-			printf("ÍË³ö\n");
+			printf("ï¿½Ë³ï¿½\n");
 			break;
         default:
             return 0;
